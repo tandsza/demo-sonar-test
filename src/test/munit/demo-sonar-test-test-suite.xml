@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="demo-sonar-test-test-suite.xml" />
+	<munit:test name="demo-sonar-test-test-suite-demo-sonar-testFlowTest" description="Test" doc:id="77735702-337e-4187-ad39-0ab466681d26" >
+		<munit:behavior>
+			<munit-tools:spy doc:name="Spy" doc:id="17182a0d-1110-40ab-b1f2-5e50abef0995" processor="Set Payload">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute attributeName="#[doc:name]" whereValue='#["Hard-coded payload"]' />
+				</munit-tools:with-attributes>
+				<munit-tools:before-call >
+					<munit-tools:assert-that doc:name="Assert that" doc:id="e8fe7701-6a56-425b-80c8-4dddfac6db83" expression="#[payload]" is="#[MunitTools::nullValue()]"/>
+				</munit-tools:before-call>
+				<munit-tools:after-call >
+					<munit-tools:assert-that doc:name="Assert that" doc:id="3a974ae9-7164-4fa9-9846-5ca627dfd6fc" expression="#[payload]" is="#[MunitTools::equalTo('Sonar Test Demo')]"/>
+				</munit-tools:after-call>
+			</munit-tools:spy>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to demo-sonar-testFlow" doc:id="88660fa3-e74b-4059-a9f6-ba36ef0c6e7f" name="demo-sonar-testFlow"/>
+		</munit:execution>
+	</munit:test>
+
+</mule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2dbc8b17-a64e-4600-ad5b-501542b7ec55" basePath="/sonar-test" >
+		<http:listener-connection host="0.0.0.0" port="8089" />
+	</http:listener-config>
+	<flow name="demo-sonar-testFlow" doc:id="aaecf236-8ced-4723-97d6-ab774a510687" >
+		<http:listener doc:name="Listener" doc:id="9aff0dd3-8b68-4dfe-81e0-cc8808b3dff4" config-ref="HTTP_Listener_config" path="/"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6206d5f9-4379-420b-9dc0-8a9addfb23dd" message="#[payload]" category="com.mytest.demo-sonar-test.demo-sonar-testFlow.start"/>
+		<set-payload value='#["Sonar Test Demo"]' doc:name="Hard-coded payload" doc:id="eb214a49-8e0e-4807-b50e-b306e958451c" />
+		<logger level="INFO" doc:name="Logger" doc:id="20fc145b-96bd-4d85-a4d7-6103f4741332" category="com.mytest.demo-sonar-test.demo-sonar-testFlow.end" message="#[payload]"/>
+	</flow>
+</mule>
