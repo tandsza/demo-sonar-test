@@ -12,5 +12,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<logger level="INFO" doc:name="Logger" doc:id="6206d5f9-4379-420b-9dc0-8a9addfb23dd" message="#[payload]" category="com.mytest.demo-sonar-test.demo-sonar-testFlow.start"/>
 		<set-payload value='#["Sonar Test Demo"]' doc:name="Hard-coded payload" doc:id="eb214a49-8e0e-4807-b50e-b306e958451c" />
 		<logger level="INFO" doc:name="Logger" doc:id="20fc145b-96bd-4d85-a4d7-6103f4741332" category="com.mytest.demo-sonar-test.demo-sonar-testFlow.end" message="#[payload]"/>
+		<!--  comment to trigger sonar -->
 	</flow>
 </mule>
