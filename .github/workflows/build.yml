@@ -1,5 +1,4 @@
 name: Build
-# Comment
 on:
   push:
     branches:
